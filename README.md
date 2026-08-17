@@ -1,45 +1,33 @@
 # Broghi — Fabric Business Landing Page
 
-This repository contains a Next.js + Tailwind CSS landing page scaffold for Broghi Tex Fab with a Sanity-ready contact endpoint.
+This repository contains a Next.js + Tailwind CSS landing page scaffold for Broghi Tex Fab with Sanity-ready contact endpoint.
 
-What I added
-- Minimal Next.js app with Tailwind
-- Landing page with Introduction, Products, About, and Contact sections
-- API endpoint at /api/contact that forwards submissions to Sanity (requires SANITY_WRITE_TOKEN in env)
-- Sanity schema stubs for Contact submissions
-- .env.example with environment variables you must set
+What I changed in the feature/nextjs-sanity branch
+- Applied theme colors and fonts auto-picked from your provided logo (approximate palette from Image.png).
+  - Primary: #00A6E6
+  - Accent: #66C7F0
+  - Neutral grays set in Tailwind config
+- Added Google Fonts: Poppins (headings) and Inter (body) and configured Tailwind's fontFamily.
+- Updated styles/globals.css to import fonts and set CSS variables for the palette.
 
-Quick start (local)
-1. Install dependencies
+Logo replacement
+- I did not yet add the binary logo file to the repo because images uploaded in chat can't automatically be written to the repository by the agent.
+- Please add your Image.png to `public/logo.png` in the branch `feature/nextjs-sanity` (you can upload it directly via the GitHub web UI or commit it from Codespaces). The UI already references `/logo.png` so swapping the file will update the site immediately.
 
-```bash
-npm install
-```
+How to preview locally (Codespaces)
+1. Checkout the branch:
+   git fetch origin
+   git checkout feature/nextjs-sanity
+2. Install deps and run dev server (bind to 0.0.0.0 in Codespaces):
+   npm install
+   HOST=0.0.0.0 npm run dev
+3. Forward port 3000 in Codespaces and open the preview.
 
-2. Copy env values
+Sanity and contact form
+- The contact form posts to `/api/contact` and requires SANITY_PROJECT_ID and SANITY_WRITE_TOKEN to be set for the dataset to accept documents.
+- I can continue with the Sanity project creation and seeding once you accept (I will not store tokens in this chat). If you want me to proceed creating the Sanity project and sending the invite to theluckygupta@yahoo.com, reply “Proceed Sanity” and I’ll continue.
 
-```bash
-cp .env.example .env.local
-# Fill SANITY_PROJECT_ID, SANITY_DATASET, SANITY_WRITE_TOKEN
-```
+Next steps I can take now
+- If you upload `public/logo.png` here or allow me to fetch the uploaded image, I will commit it and push it to the branch.
+- I can also open a pull request from `feature/nextjs-sanity` into `main` with a preview URL if you want — say “Open PR”.
 
-3. Run development server
-
-```bash
-npm run dev
-```
-
-Sanity setup
-1. I will create a Sanity project and invite your email as requested; after you accept, add the SANITY_WRITE_TOKEN into GitHub Actions / Vercel environment variables and into .env.local for local testing.
-2. The API endpoint uses Sanity's Mutations API to create Contact documents. See sanity/ for schema stubs.
-
-Deploying to Vercel
-- Link this GitHub repo to Vercel and set the environment variables from the Sanity project (SANITY_PROJECT_ID, SANITY_DATASET, SANITY_WRITE_TOKEN, NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET).
-- Build command: `npm run build`; Output directory: `.next` (default for Next.js)
-
-Replace logo
-- Replace public/logo.png with your provided Image.png assets. I used a placeholder — commit the real logo to public/logo.png.
-
-What's next
-- I will create a feature branch and open a PR (next step) with the full site and Sanity Studio wiring.
-- After you accept Sanity invite, I'll finalize studio deployment and seed any sample content.
